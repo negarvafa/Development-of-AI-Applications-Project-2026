@@ -28,9 +28,9 @@ Our group plans to develop an AI-powered job application assistant
 
 ## Main user workflow
 
-1. **User Input:** The user provides information about their education, skills, work experience, and career interests.
-2. **Processing & Guardrails:** The application service layer (`src/services/ai_service.py`) validates and formats the request.
-3. **Model Response:** The model client calls Ollama locally. The AI analyzes the user's profile and suggests suitable job roles and career options based on their education, skills, work experience, and interests. The response is returned through the service layer to the UI.
+1. **User Input: ** The user provides information about their education, skills, work experience, and career interests.
+2. **Processing & Guardrails: ** The application service layer (`src/services/ai_service.py`)is responsible for validating user input, applying guardrails, and formatting requests before they are sent to the language model.
+3. **Model Response: ** The model client calls Ollama locally. The AI analyzes the user's profile and suggests suitable job roles and career options based on their education, skills, work experience, and interests. The response is returned through the service layer to the UI.
 
 ## Architecture
 
@@ -136,8 +136,8 @@ Refer to [`evaluation/README.md`](evaluation/README.md) for guidelines on defini
 
 ## Known limitations
 
-- Highlight known system limitations, unhandled edge cases, or boundaries of current capabilities.
+The assistant may misunderstand information and may not always accurately judge how well a candidate matches a position. job listing may also become outdated, and the system depends on the information.
 
 ## Future improvements
 
-- List planned feature enhancements, architectural refactorings, or future capabilities.
+future versions could connect to more job platforms, improve job matching, and provide more personalized CV and cover letter suggestions based on the user's skills and preference.
