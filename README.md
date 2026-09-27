@@ -24,7 +24,7 @@ AI can give personalized suggestions based on the applicant's skills and the job
 
 ## Solution
 
-Our group plans to develop an AI-powered job application assistant
+Our group plans to develop CareerPilot, an AI-powered job search and application assistant. The application analyzes the user's profile and helps identify suitable job opportunities. It can compare the user's background with job requirements and provide personalized suggestions to support the application process.
 
 ## Main user workflow
 
@@ -129,8 +129,16 @@ pytest
 ```
 
 ## Evaluation
-
 Describe your evaluation methodology and summarize key results. Starter test cases can be found in [`evaluation/test_cases.json`](evaluation/test_cases.json).
+test case 1
+User Profile:
+information technology student 
+python
+machine
+Data Analysis 
+Expected Result: Ai recommends Data analyst, junior Ai Engineer,
+
+
 
 Refer to [`evaluation/README.md`](evaluation/README.md) for guidelines on defining success, edge cases, and failure scenarios.
 
