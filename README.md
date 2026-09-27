@@ -51,7 +51,7 @@ Ollama (Local LLM Server)
 > **Core Architectural Rule:** The user interface must NEVER communicate directly with the model client or Ollama. All interactions must pass through the service layer (`ai_service.py`).
 
 ## Model
-
+LIama 3.2 
 - **Model used:** e.g., `llama3.2` (or specified local Ollama model)
 - **Selection rationale:** Why was this specific model chosen for your project (e.g., lightweight, performance, context size)?
 
@@ -59,7 +59,7 @@ Ollama (Local LLM Server)
 
 Select at least one additional capability to implement for your final project:
 
-- [ ] RAG (Retrieval-Augmented Generation)
+- [ok ] RAG (Retrieval-Augmented Generation)
 - [ ] Tools / External API integration
 - [ ] Model Context Protocol (MCP)
 - [ ] Agentic workflow (Model-selected actions based on observations)
