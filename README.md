@@ -16,7 +16,7 @@ Job seekers often find it difficult to understand how well their skills and expe
 The intended users are job seekers who want help understanding job requirements and preparing better job applications. 
 
 ### Problem statement
-help applicants find jobs 
+help applicants or job seekers find jobs 
 
 ### Why AI is appropriate
 AI can give personalized suggestions based on the applicant's skills and the job requirements.
@@ -68,7 +68,7 @@ Select at least one additional capability to implement for your final project:
 - [ ] Other: ______________________
 
 ### Capability justification
-Explain why the selected capability is useful and necessary for your application's user problem.
+RAG allows the assistant to retrieve relevant information from the user's CV and job descriptions before generating a response. This make the advice more accurate and personalized because the AI can base its suggestions on the candidate's actual skills and the specific requriements of each job.
 
 ## Setup
 
