@@ -8,7 +8,8 @@ def recommend_jobs(
     experience,
     interests,
     location="Finland",
-    language="English"
+    language="English",
+    total_experience=0
 ):
     """Recommend career roles based on a job seeker's profile."""
 
@@ -22,6 +23,7 @@ Job seeker profile:
 Education: {education}
 Skills: {skills}
 Work experience: {experience}
+Total Work Experience: {total_experience} years
 Career interests: {interests}
 Preferred job location: {location}
 Response language: {language}
