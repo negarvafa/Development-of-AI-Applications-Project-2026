@@ -4,10 +4,10 @@ from src.services.job_recommendation import recommend_jobs
 
 
 def generate_recommendations(
-    education, skills, experience, interests, location, language
+    education, skills, experience, interests, location, language, total_experience
 ):
     return recommend_jobs(
-        education, skills, experience, interests, location, language
+        education, skills, experience, interests, location, language, total_experience
     )
 
 
@@ -32,6 +32,14 @@ with gr.Blocks(title="CareerPilot") as demo:
         label="Work Experience",
         lines=3,
         placeholder="e.g. Customer service"
+    )
+
+    total_experience_slider = gr.Slider(
+    minimum=0, 
+    maximum=40, 
+    step=1, 
+    value=0, 
+    label="Total work experience in years"
     )
 
     interests = gr.Textbox(
@@ -65,11 +73,11 @@ with gr.Blocks(title="CareerPilot") as demo:
             experience,
             interests,
             location,
-            language
+            language,
+            total_experience_slider
         ],
         outputs=results
-    )
-
-
+  )
+    
 if __name__ == "__main__":
     demo.launch()
