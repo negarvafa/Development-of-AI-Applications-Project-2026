@@ -16,7 +16,7 @@ Job seekers often find it difficult to understand how well their skills and expe
 The intended users are job seekers who want help understanding job requirements and preparing better job applications. 
 
 ### Problem statement
-help applicants or job seekers find jobs 
+Help applicants or job seekers find jobs.
 
 ### Why AI is appropriate
 AI can give personalized suggestions based on the applicant's skills and the job requirements.
@@ -59,8 +59,8 @@ LIama 3.2
 
 Select at least one additional capability to implement for your final project:
 
-- [ok ] RAG (Retrieval-Augmented Generation)
-- [ ] Tools / External API integration
+- [x] RAG (Retrieval-Augmented Generation)
+- [x] Tools / External API integration
 - [ ] Model Context Protocol (MCP)
 - [ ] Agentic workflow (Model-selected actions based on observations)
 - [ ] Memory / Persistent state
@@ -68,7 +68,7 @@ Select at least one additional capability to implement for your final project:
 - [ ] Other: ______________________
 
 ### Capability justification
-RAG allows the assistant to retrieve relevant information from the user's CV and job descriptions before generating a response. This make the advice more accurate and personalized because the AI can base its suggestions on the candidate's actual skills and the specific requriements of each job.
+CareerPilot will implement Tools / External API Integration as its primary additional AI capability, enabling the application to access external job-market information and provide more relevant, location-specific career recommendations. Retrieval-Augmented Generation (RAG) is also added as a complementary capability to ground recommendations in trusted career guidance and qualification documents. Other capabilities, such as MCP, agentic workflows, persistent memory, and multimodal interaction, are not required for the initial version and may be considered as future extensions.
 
 ## Setup
 
