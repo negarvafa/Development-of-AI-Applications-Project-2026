@@ -62,5 +62,17 @@
             "Power BI"
         ],
         "experience": 0
+    },
+
+    {
+    "title": "Junior Python Developer",
+    "company": "Digital Solutions Oy",
+    "location": "Remote",
+    "skills": [
+        "Python",
+        "Git",
+        "SQL"
+    ],
+    "experience": 1
     }
 ]

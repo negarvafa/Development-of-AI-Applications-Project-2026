@@ -45,6 +45,9 @@ def calculate_location_match(user_location, job_location):
     if user_location == job_location:
         return 100
 
+    if job_location == "remote":
+        return 100
+
     return 0
 
 def rank_jobs(user_skills, user_experience, user_location, jobs):
