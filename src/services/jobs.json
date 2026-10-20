@@ -1,0 +1,66 @@
+[
+    {
+        "title": "Junior AI Developer",
+        "company": "Tech Solutions Oy",
+        "location": "Helsinki",
+        "skills": [
+            "Python",
+            "Git",
+            "Machine Learning",
+            "PyTorch",
+            "Docker"
+        ],
+        "experience": 1
+    },
+
+    {
+        "title": "Data Analyst",
+        "company": "Data Company Oy",
+        "location": "Tampere",
+        "skills": [
+            "Python",
+            "SQL",
+            "Power BI",
+            "Excel"
+        ],
+        "experience": 1
+    },
+
+    {
+        "title": "Software Developer",
+        "company": "Software Finland Oy",
+        "location": "Turku",
+        "skills": [
+            "Python",
+            "Git",
+            "Docker",
+            "SQL"
+        ],
+        "experience": 2
+    },
+
+    {
+        "title": "Machine Learning Intern",
+        "company": "AI Finland Oy",
+        "location": "Helsinki",
+        "skills": [
+            "Python",
+            "Machine Learning",
+            "PyTorch",
+            "Git"
+        ],
+        "experience": 0
+    },
+
+    {
+        "title": "Business Intelligence Trainee",
+        "company": "Analytics Oy",
+        "location": "Tampere",
+        "skills": [
+            "Excel",
+            "SQL",
+            "Power BI"
+        ],
+        "experience": 0
+    }
+]
