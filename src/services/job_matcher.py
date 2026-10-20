@@ -2,6 +2,7 @@ import json
 
 from pathlib import Path
 
+# Load job data from the JSON file.
 def load_jobs():
     file_path = Path(__file__).parent / "jobs.json"
 
@@ -10,6 +11,8 @@ def load_jobs():
 
     return jobs
 
+# Compare the user's skills with the skills required for the job
+# Return the match percentage, matching skills, and missing skills.
 def calculate_skill_match(user_skills, job_skills):
 
     user_skills = {skill.lower().strip() for skill in user_skills}
@@ -25,6 +28,7 @@ def calculate_skill_match(user_skills, job_skills):
 
     return round(score), sorted(matching_skills), sorted(missing_skills)
 
+# Calculate how well the user's work experience meets the job requirement.
 def calculate_experience_match(user_experience, required_experience):
 
     if required_experience == 0:
@@ -37,6 +41,8 @@ def calculate_experience_match(user_experience, required_experience):
 
     return round(score)
 
+# Check whether the job location matches the user's preferred location.
+# Remote jobs are considered suitable regardless of the user's location.
 def calculate_location_match(user_location, job_location):
 
     user_location = user_location.lower().strip()
@@ -50,6 +56,8 @@ def calculate_location_match(user_location, job_location):
 
     return 0
 
+# Calculate the overall match score for each job and rank jobs.
+# from the best match to the lowest match.
 def rank_jobs(user_skills, user_experience, user_location, jobs):
 
     results = []
@@ -71,6 +79,8 @@ def rank_jobs(user_skills, user_experience, user_location, jobs):
             job["location"]
         )
 
+# Calculate the overall score using weighted matching criteria:
+# skills 70%, experience 20%, and location 10%.
         overall_score = (
             skill_score * 0.7 +
             experience_score * 0.2 +
@@ -100,6 +110,8 @@ def rank_jobs(user_skills, user_experience, user_location, jobs):
 
     return results
 
+
+# Test the job matching functionality with a sample user profile.
 if __name__ == "__main__":
 
     jobs = load_jobs()
