@@ -118,6 +118,20 @@ with gr.Blocks(title="CareerPilot") as demo:
         ],
         outputs=results
     )
+
+    # recommend_button.click(
+    #     fn=generate_recommendations,
+    #     inputs=[
+    #         education,
+    #         skills,
+    #         experience,
+    #         interests,
+    #         location,
+    #         language,
+    #         total_experience_slider
+    #     ],
+    #     outputs=results
+    # )
     
 if __name__ == "__main__":
     demo.launch()
