@@ -1,6 +1,10 @@
+import csv
+
 import json
 
 from pathlib import Path
+
+from src.services.job_csv_loader import load_jobs_from_csv, prepare_jobs
 
 # Load job data from the JSON file.
 def load_jobs():
@@ -8,6 +12,20 @@ def load_jobs():
 
     with open(file_path, "r", encoding="utf-8") as file:
         jobs = json.load(file)
+
+    return jobs
+
+# Load job data from the CSV dataset.
+def load_jobs_from_csv():
+    file_path = Path(__file__).parent.parent.parent / "data" / "jobs-export.csv"
+
+    jobs = []
+
+    with open(file_path, "r", encoding="utf-8-sig") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            jobs.append(row)
 
     return jobs
 
@@ -111,37 +129,123 @@ def rank_jobs(user_skills, user_experience, user_location, jobs):
     return results
 
 
-# Test the job matching functionality with a sample user profile.
-if __name__ == "__main__":
+# # Test the job matching functionality with a sample user profile.
+# if __name__ == "__main__":
 
-    jobs = load_jobs()
+#     csv_jobs = load_jobs_from_csv()
 
-    user_skills = [
-        "Python",
-        "Git",
-        "Machine Learning",
-        "PyTorch"
+#     print(f"Loaded {len(csv_jobs)} jobs from CSV")
+#     print(csv_jobs[0])
+
+#     jobs = load_jobs()
+
+#     # vanha testikoodi jatkuu...
+
+#     jobs = load_jobs()
+
+#     user_skills = [
+#         "Python",
+#         "Git",
+#         "Machine Learning",
+#         "PyTorch"
+#     ]
+
+#     user_experience = 1
+#     user_location = "Helsinki"
+
+#     results = rank_jobs(
+#     user_skills,
+#     user_experience,
+#     user_location,
+#     jobs
+#     )
+
+#     print("\nCareerPilot Job Recommendations\n")
+
+#     for job in results[:5]:
+#         print(f"{job['title']} - {job['company']}")
+#         print(f"Location: {job['location']}")
+#         print(f"Overall match: {job['score']}%")
+#         print(f"Skill match: {job['skill_score']}%")
+#         print(f"Experience match: {job['experience_score']}%")
+#         print(f"Location match: {job['location_score']}%")
+#         print(f"Matching skills: {', '.join(job['matching_skills'])}")
+#         print(f"Missing skills: {', '.join(job['missing_skills'])}")
+#         print()
+
+def rank_csv_jobs(user_location, user_interests, jobs):
+
+    results = []
+
+    location = user_location.lower().strip()
+    interests = [
+        interest.lower().strip()
+        for interest in user_interests
     ]
 
-    user_experience = 1
-    user_location = "Helsinki"
+    for job in jobs:
 
-    results = rank_jobs(
-    user_skills,
-    user_experience,
-    user_location,
-    jobs
+        score = 0
+
+        job_location = job["location"].lower().strip()
+        job_title = job["title"].lower()
+        job_industry = job["industry"].lower()
+
+        # Location match
+        if location and location == job_location:
+            score += 40
+
+        # Interest match
+        matching_interests = []
+
+        for interest in interests:
+            if interest in job_title or interest in job_industry:
+                score += 20
+                matching_interests.append(interest)
+
+        results.append({
+            "title": job["title"],
+            "company": job["company"],
+            "location": job["location"],
+            "industry": job["industry"],
+            "languages": job["languages"],
+            "url": job["url"],
+            "score": score,
+            "matching_interests": matching_interests,
+        })
+
+    results.sort(
+        key=lambda job: job["score"],
+        reverse=True
     )
 
-    print("\nCareerPilot Job Recommendations\n")
+    return results
 
-    for job in results[:5]:
+if __name__ == "__main__":
+
+    jobs = load_jobs_from_csv()
+    jobs = prepare_jobs(jobs)
+
+    user_location = "Helsinki"
+
+    user_interests = [
+        "software",
+        "data",
+        "technology"
+    ]
+
+    results = rank_csv_jobs(
+        user_location,
+        user_interests,
+        jobs
+    )
+
+    print("\nCareerPilot Real Job Recommendations\n")
+
+    for job in results[:10]:
         print(f"{job['title']} - {job['company']}")
         print(f"Location: {job['location']}")
-        print(f"Overall match: {job['score']}%")
-        print(f"Skill match: {job['skill_score']}%")
-        print(f"Experience match: {job['experience_score']}%")
-        print(f"Location match: {job['location_score']}%")
-        print(f"Matching skills: {', '.join(job['matching_skills'])}")
-        print(f"Missing skills: {', '.join(job['missing_skills'])}")
+        print(f"Industry: {job['industry']}")
+        print(f"Match score: {job['score']}")
+        print(f"URL: {job['url']}")
         print()
