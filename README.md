@@ -36,17 +36,21 @@ Our group plans to develop CareerPilot, an AI-powered job search and application
 
 Below is the initial starter architecture. As your project evolves with additional capabilities, replace or extend this diagram in [`docs/architecture.md`](docs/architecture.md).
 
-```text
 User
   ↓
-Gradio UI (app/ui.py)
+Gradio UI (app/careerpilot_ui.py)
   ↓
-Application / AI Service (src/services/ai_service.py)
+Application(job matching) / AI Service (src/services/job_matvher.py)
   ↓
-Model Client (src/models/model_client.py)
+AI tool calling (src/services/job_tool_calling.py)
   ↓
-Ollama (Local LLM Server)
-```
+Ollama (Local LLM Server)/ lIama3.2
+``` ↓
+csv job serch (src/services/job_tool_calling.py)
+    ↓
+   data/jobs-export.csv
+
+
 
 > **Core Architectural Rule:** The user interface must NEVER communicate directly with the model client or Ollama. All interactions must pass through the service layer (`ai_service.py`).
 
@@ -59,8 +63,8 @@ LIama 3.2
 
 Select at least one additional capability to implement for your final project:
 
-- [x] RAG (Retrieval-Augmented Generation)
-- [x] Tools / External API integration
+- [] RAG (Retrieval-Augmented Generation)
+- [x] Tools / tool Calling
 - [ ] Model Context Protocol (MCP)
 - [ ] Agentic workflow (Model-selected actions based on observations)
 - [ ] Memory / Persistent state
@@ -68,9 +72,22 @@ Select at least one additional capability to implement for your final project:
 - [ ] Other: ______________________
 
 ### Capability justification
-CareerPilot will implement Tools / External API Integration as its primary additional AI capability, enabling the application to access external job-market information and provide more relevant, location-specific career recommendations. Retrieval-Augmented Generation (RAG) is also added as a complementary capability to ground recommendations in trusted career guidance and qualification documents. Other capabilities, such as MCP, agentic workflows, persistent memory, and multimodal interaction, are not required for the initial version and may be considered as future extensions.
+CareerPilot uses Ollama and Llama 3.2 to call a Python job search tool.
+
+The AI model can request the `search_jobs` function, which searches job advertisements from a local CSV dataset (`data/jobs-export.csv`).
+
+The tool returns matching jobs based on the user's skills, interests, and preferred location.
+
+The AI then uses these results to explain suitable job opportunities.
+
+This feature has been tested successfully in the Gradio user interface.
+
+The CSV dataset is local, and job advertisements are not verified as currently open.
+
 
 ## Setup
+python -m app.main
+python -m app.careerpilot_ui
 
 ### 1. Create the Conda environment
 
