@@ -1,4 +1,5 @@
 
+from src.services.job_tool_calling import generate_tool_recommendations
 import gradio as gr
 from src.services.job_recommendation import recommend_jobs
 from src.services.job_matcher import load_jobs, rank_jobs
@@ -118,7 +119,15 @@ with gr.Blocks(title="CareerPilot") as demo:
         ],
         outputs=results
     )
+    tool_button = gr.Button("Find Jobs with AI Tool Calling")
 
+    tool_results = gr.Markdown()
+
+    tool_button.click(
+        fn=generate_tool_recommendations,
+        inputs=[skills, interests, location, language],
+        outputs=tool_results
+    )
     # recommend_button.click(
     #     fn=generate_recommendations,
     #     inputs=[
