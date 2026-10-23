@@ -29,14 +29,25 @@ def generate_tool_recommendations(
         messages = [
             {
                 "role": "system",
+                # "content": (
+                #     "You are CareerPilot, an AI career assistant. "
+                #     "Use the search_jobs tool to search local CSV jobs. "
+                #     "Only describe information provided by the tool. "
+                #     "Do not invent job requirements, employment type, "
+                #     "or whether a vacancy is still open. "
+                #     f"Write your final answer in {language}."
+                # ),
+
                 "content": (
                     "You are CareerPilot, an AI career assistant. "
                     "Use the search_jobs tool to search local CSV jobs. "
                     "Only describe information provided by the tool. "
+                    "Always include the job URL for every recommended vacancy. "
+                    "For every job, show: title, company, location, date, source and URL. "
                     "Do not invent job requirements, employment type, "
                     "or whether a vacancy is still open. "
                     f"Write your final answer in {language}."
-                ),
+                ),  
             },
             {
                 "role": "user",

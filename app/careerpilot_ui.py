@@ -111,23 +111,41 @@ with gr.Blocks(title="CareerPilot") as demo:
     results = gr.Markdown(label="AI Recommendations")
 
     recommend_button.click(
-        fn=generate_job_matches,
-        inputs=[
-            skills,
-            total_experience_slider,
-            location
-        ],
-        outputs=results
+    fn=generate_tool_recommendations,
+    inputs=[
+        skills,
+        interests,
+        location,
+        language
+    ],
+    outputs=results
     )
-    tool_button = gr.Button("Find Jobs with AI Tool Calling")
 
-    tool_results = gr.Markdown()
+    # recommend_button.click(
+    #     fn=generate_job_matches,
+    #     inputs=[
+    #         skills,
+    #         total_experience_slider,
+    #         location
+    #     ],
+    #     outputs=results
+    # )
+    # tool_button = gr.Button("Find Jobs with AI Tool Calling")
 
-    tool_button.click(
-        fn=generate_tool_recommendations,
-        inputs=[skills, interests, location, language],
-        outputs=tool_results
+    # tool_results = gr.Markdown()
+
+    # tool_button.click(
+    #     fn=generate_tool_recommendations,
+    #     inputs=[skills, interests, location, language],
+    #     outputs=tool_results
+    # )
+
+    recommend_button.click(
+    fn=generate_tool_recommendations,
+    inputs=[skills, interests, location, language],
+    outputs=results
     )
+
     # recommend_button.click(
     #     fn=generate_recommendations,
     #     inputs=[
