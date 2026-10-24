@@ -1,6 +1,6 @@
 # CareerPilot – AI Job Search & Application Assistant
 
-Starter template for the **Development of AI Applications** course final group project.
+CareerPilot is an AI-powered job search and recommendation assistant developed for the Development of AI Applications course project.
 
 ## Team members
 
@@ -16,54 +16,54 @@ Job seekers often find it difficult to understand how well their skills and expe
 The intended users are job seekers who want help understanding job requirements and preparing better job applications. 
 
 ### Problem statement
-Help applicants or job seekers find jobs.
+Help job seekers discover relevant employment opportunities and better understand how their skills and interests match available positions.
 
 ### Why AI is appropriate
 AI can give personalized suggestions based on the applicant's skills and the job requirements.
 
-
 ## Solution
 
-Our group plans to develop CareerPilot, an AI-powered job search and application assistant. The application analyzes the user's profile and helps identify suitable job opportunities. It can compare the user's background with job requirements and provide personalized suggestions to support the application process.
+Our group developed CareerPilot, an AI-powered job search and recommendation assistant. The application analyzes user skills, interests, and location preferences to identify relevant job opportunities from a dataset containing over 5000 Finnish job advertisements.
 
-## Main user workflow
+## Main User Workflow
 
-1. **User Input: ** The user provides information about their education, skills, work experience, and career interests.
-2. **Processing & Guardrails: ** The application service layer (`src/services/ai_service.py`)is responsible for validating user input, applying guardrails, and formatting requests before they are sent to the language model.
-3. **Model Response: ** The model client calls Ollama locally. The AI analyzes the user's profile and suggests suitable job roles and career options based on their education, skills, work experience, and interests. The response is returned through the service layer to the UI.
+1. The user enters skills, interests, and preferred location.
+2. CareerPilot sends the request to Llama 3.2 running locally through Ollama.
+3. The model uses tool calling to invoke the `search_jobs()` function.
+4. The job search tool retrieves matching vacancies from the CSV dataset.
+5. Retrieved jobs are returned to the model.
+6. The model generates personalized recommendations and explanations.
+7. Recommendations are displayed in the Gradio user interface.
 
 ## Architecture
 
-Below is the initial starter architecture. As your project evolves with additional capabilities, replace or extend this diagram in [`docs/architecture.md`](docs/architecture.md).
+A detailed architecture description is available in: [`docs/architecture.md`](docs/architecture.md).
 
-User
-  ↓
-Gradio UI (app/careerpilot_ui.py)
-  ↓
-Application(job matching) / AI Service (src/services/job_matvher.py)
-  ↓
-AI tool calling (src/services/job_tool_calling.py)
-  ↓
-Ollama (Local LLM Server)/ lIama3.2
-``` ↓
-csv job serch (src/services/job_tool_calling.py)
-    ↓
-   data/jobs-export.csv
+The architecture includes:
 
+- Gradio user interface
+- Llama 3.2 running through Ollama
+- Tool calling functionality
+- CSV-based job retrieval
+- AI-generated job recommendations
 
-
-> **Core Architectural Rule:** The user interface must NEVER communicate directly with the model client or Ollama. All interactions must pass through the service layer (`ai_service.py`).
+> The user interface never accesses the job dataset directly. All model interactions and job retrieval operations are performed through dedicated service and tool-calling components.
 
 ## Model
-LIama 3.2 
-- **Model used:** e.g., `llama3.2` (or specified local Ollama model)
-- **Selection rationale:** Why was this specific model chosen for your project (e.g., lightweight, performance, context size)?
+
+### Model Used
+
+Llama 3.2 (running locally through Ollama)
+
+### Selection Rationale
+
+Llama 3.2 was selected because it is lightweight, can run locally without external API costs, supports tool calling, and provides sufficient performance for job recommendation and explanation tasks.
 
 ## Additional AI capability
 
 Select at least one additional capability to implement for your final project:
 
-- [] RAG (Retrieval-Augmented Generation)
+- [ ] RAG (Retrieval-Augmented Generation)
 - [x] Tools / tool Calling
 - [ ] Model Context Protocol (MCP)
 - [ ] Agentic workflow (Model-selected actions based on observations)
@@ -84,10 +84,7 @@ This feature has been tested successfully in the Gradio user interface.
 
 The CSV dataset is local, and job advertisements are not verified as currently open.
 
-
 ## Setup
-python -m app.main
-python -m app.careerpilot_ui
 
 ### 1. Create the Conda environment
 
@@ -103,19 +100,22 @@ conda activate dev-ai-project
 
 ### 3. Configure environment variables
 
-Copy `.env.example` to create your local `.env` configuration file:
+Copy `.env.example` to create your local `.env` file.
 
-On Linux / macOS:
+Linux / macOS:
+
 ```bash
 cp .env.example .env
 ```
 
-On Windows (Command Prompt / PowerShell):
+Windows:
+
 ```powershell
 copy .env.example .env
 ```
 
-Ensure `.env` contains valid values for `OLLAMA_BASE_URL` and `MODEL_NAME`:
+Ensure the following values are configured:
+
 ```env
 OLLAMA_BASE_URL=http://localhost:11434
 MODEL_NAME=llama3.2
@@ -123,46 +123,68 @@ MODEL_NAME=llama3.2
 
 ### 4. Start Ollama
 
-Make sure Ollama is installed and running locally, then pull your configured model:
+Download and run the model:
 
 ```bash
+ollama pull llama3.2
 ollama run llama3.2
 ```
 
-### 5. Run the application
+### 5. Run the Applications
 
-Run the application from the root directory of the project:
+#### CareerPilot (Project Application)
+
+```bash
+python -m app.careerpilot_ui
+```
+
+Open:
+
+```text
+http://localhost:7860
+```
+
+#### Application Starter (Reference Application)
+
+The original starter application is still included in the repository for reference:
 
 ```bash
 python -m app.main
 ```
 
-Then open your browser at `http://localhost:7860`.
-
-### 6. Run automated tests
+### 6. Run Automated Tests
 
 ```bash
 pytest
 ```
 
 ## Evaluation
-Describe your evaluation methodology and summarize key results. Starter test cases can be found in [`evaluation/test_cases.json`](evaluation/test_cases.json).
-test case 1
-User Profile:
-information technology student 
-python
-machine
-Data Analysis 
-Expected Result: Ai recommends Data analyst, junior Ai Engineer,
 
+CareerPilot was evaluated using six different test profiles:
 
+- AI / Software Developer
+- Data Analyst
+- Cybersecurity Specialist
+- Healthcare Professional
+- Space Researcher (edge case)
+- Empty Profile (robustness test)
 
-Refer to [`evaluation/README.md`](evaluation/README.md) for guidelines on defining success, edge cases, and failure scenarios.
+The evaluation showed that the system successfully retrieved relevant jobs from the CSV dataset and generated AI-assisted recommendations using tool calling.
 
-## Known limitations
+Detailed test cases, evaluation methodology, and results can be found in: [`evaluation/test_cases.json`](evaluation/test_cases.json).
+Refer to [`evaluation/README.md`](evaluation/README.md) for evaluation criteria, success definitions, edge cases, and failure scenario guidelines.
 
-The assistant may misunderstand information and may not always accurately judge how well a candidate matches a position. job listing may also become outdated, and the system depends on the information.
+## Known Limitations
 
-## Future improvements
+- Job recommendations depend on the quality of the CSV dataset.
+- The dataset may contain outdated job advertisements.
+- The language model occasionally generates generic advice not present in the retrieved data.
+- Highly specialized interests may result in limited matching opportunities.
 
-future versions could connect to more job platforms, improve job matching, and provide more personalized CV and cover letter suggestions based on the user's skills and preference.
+## Future Improvements
+
+- Replace the static CSV dataset with a live job search API.
+- Improve job matching using richer job descriptions.
+- Add CV and cover letter assistance.
+- Improve recommendation accuracy and filtering.
+- Expand evaluation with additional user profiles and real-world users.
