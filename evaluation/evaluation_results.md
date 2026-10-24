@@ -1,32 +1,40 @@
 # Evaluation Results Summary
 
-Document your team's evaluation results below.
-
 ## Summary Overview
 
-- **Date of Evaluation:** YYYY-MM-DD
-- **Model Evaluated:** (e.g., `llama3.2`)
-- **Total Test Cases Executed:** 0
-- **Passed:** 0
+- **Date of Evaluation:** 2026-10-24
+- **Model Evaluated:** Llama 3.2 (Ollama)
+- **Total Test Cases Executed:** 6
+- **Passed:** 5
+- **Partial:** 1
 - **Failed:** 0
-- **Pass Rate:** 0%
+- **Pass Rate:** 100% (5 passed, 1 partial, 0 failed)
 
 ## Performance by Category
 
 | Category | Total Cases | Passed | Failed | Pass Rate |
 | :--- | :---: | :---: | :---: | :---: |
-| Successful Cases | 0 | 0 | 0 | 0% |
-| Difficult Cases | 0 | 0 | 0 | 0% |
-| Failure / Edge Cases | 0 | 0 | 0 | 0% |
+| Successful Cases | 4 | 4 | 0 | 100% |
+| Difficult Cases | 1 | 0 | 0 | Partial |
+| Failure / Edge Cases | 1 | 1 | 0 | 100% |
 
 ## Key Findings & Failure Analysis
+- The application successfully handled six evaluation scenarios representing both realistic users and challenging edge cases.
 
 ### What worked well
-- Observation 1
-- Observation 2
+- Tool calling successfully retrieved jobs from the CSV dataset.
+- Relevant jobs were recommended for multiple user profiles.
+- The application handled incomplete user input without errors.
+- AI-generated explanations improved recommendation clarity.
 
 ### Observed failure modes
-- Description of case where the system failed and why.
+- The language model occasionally generated generic job-search advice not present in the retrieved data.
+- Some location descriptions were slightly generalized by the model.
 
-## Action Items & Improvements
-- [ ] Planned fix or enhancement based on evaluation findings.
+## Action Items & Future Improvements
+- Replace the static CSV dataset with a live job search API.
+- Improve location matching to reduce overgeneralized recommendations.
+- Improve prompt design to ensure job URLs are consistently included in responses.
+- Add support for richer job descriptions and skill extraction.
+- Add CV and cover letter assistance.
+- Expand testing with additional user profiles and real-world users.
