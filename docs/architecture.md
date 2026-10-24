@@ -20,7 +20,7 @@ Ollama (Local Inference Server)
 Local Model (e.g., llama3.2)
 ```
 
-### CareerPilot Architecture
+## CareerPilot Architecture
 
 The final CareerPilot application extends the baseline architecture with tool calling and job retrieval functionality.
 
@@ -28,14 +28,20 @@ The final CareerPilot application extends the baseline architecture with tool ca
 User
   ↓
 CareerPilot UI
+(app/careerpilot_ui.py)
   ↓
 Tool Calling Service
+(src/services/job_tool_calling.py)
+  ↓
+Model Client
+(src/models/model_client.py)
   ↓
 Llama 3.2 via Ollama
   ↓
 Tool Call: search_jobs()
   ↓
-csv_jobs.py
+CSV Retrieval Service
+(src/services/csv_jobs.py)
   ↓
 jobs-export.csv (5000+ jobs)
   ↓
