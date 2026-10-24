@@ -1,4 +1,4 @@
-# CareerPilot – AI Job Search & Application Assistant
+# CareerPilot – AI Job Search & Recommendation Assistant
 
 CareerPilot is an AI-powered job search and recommendation assistant developed for the Development of AI Applications course project.
 
@@ -10,7 +10,7 @@ CareerPilot is an AI-powered job search and recommendation assistant developed f
 - Member 4 Negar Vafa (negar.2.vafa@student.hamk.fi)
 
 ## Problem
-Job seekers often find it difficult to understand how well their skills and experience match a job description. Preparing for job applications and interviews can also take a significant amount of time. Our AI-powered assistant bridges this gap by automatically searching for relevant positions, analyzing requirements, and tailoring your application materials instantly.
+Job seekers often find it difficult to understand how well their skills and experience match a job description. Preparing for job applications and identifying suitable opportunities can take a significant amount of time. Our AI-powered assistant helps users discover relevant positions and understand how their interests and skills relate to available jobs.
 
 ### Intended users
 The intended users are job seekers who want help understanding job requirements and preparing better job applications. 
@@ -38,6 +38,25 @@ Our group developed CareerPilot, an AI-powered job search and recommendation ass
 ## Architecture
 
 A detailed architecture description is available in: [`docs/architecture.md`](docs/architecture.md).
+
+```text
+User
+ ↓
+Gradio UI (careerpilot_ui.py)
+ ↓
+Tool Calling Layer (job_tool_calling.py)
+ ↓
+Llama 3.2 (Ollama)
+ ↓
+search_jobs() Tool
+ ↓
+CSV Job Dataset (jobs-export.csv)
+ ↓
+AI Recommendations
+```
+### Architecture Overview
+
+CareerPilot follows a modular architecture where the user interface, AI model interaction, job retrieval, and data storage are separated into independent components.
 
 The architecture includes:
 
