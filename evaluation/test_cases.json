@@ -2,25 +2,57 @@
   {
     "id": "case-01",
     "category": "successful_case",
-    "input": "Summarize the key objectives of this project in two sentences.",
-    "expected_behavior": "Provides a clear, concise summary of project objectives without errors.",
-    "actual_result": "",
-    "status": "pending"
+    "input": "Skills: Python, Git, PyTorch. Interests: AI, Machine Learning. Location: Helsinki.",
+    "expected_behavior": "Recommend AI and software development related jobs.",
+    "actual_result": "Returned AI and software-related job recommendations from the CSV dataset.",
+    "status": "pass"
   },
   {
     "id": "case-02",
-    "category": "difficult_case",
-    "input": "Explain how quantum computing works to a 5-year-old using simple analogies.",
-    "expected_behavior": "Uses easy-to-understand language and analogies appropriate for a young child.",
-    "actual_result": "",
-    "status": "pending"
+    "category": "successful_case",
+    "input": "Skills: SQL, Excel, Power BI. Interests: Data Analytics. Location: Tampere.",
+    "expected_behavior": "Recommend data analytics related positions.",
+    "actual_result": "Returned analytics and data-related job opportunities.",
+    "status": "pass"
   },
   {
     "id": "case-03",
+    "category": "successful_case",
+    "input": "Skills: Linux, Networking. Interests: Cybersecurity. Location: Espoo.",
+    "expected_behavior": "Recommend cybersecurity related positions.",
+    "actual_result": "Returned cybersecurity and IT-related jobs.",
+    "status": "pass"
+  },
+  {
+    "id": "case-04",
+    "category": "successful_case",
+    "input": "Skills: Patient Care. Interests: Healthcare. Location: Rovaniemi.",
+    "expected_behavior": "Recommend healthcare related positions.",
+    "actual_result": "Returned healthcare and social care job opportunities.",
+    "status": "pass"
+  },
+  {
+    "id": "case-05",
+    "category": "difficult_case",
+    "input": "Skills: Astronomy. Interests: Space Exploration. Location: Joensuu.",
+    "expected_behavior": "Return the closest available matches without generating fictional jobs.",
+    "actual_result": "Returned limited matching jobs and remained operational.",
+    "status": "partial"
+  },
+  {
+    "id": "case-06",
     "category": "failure_case",
-    "input": "",
-    "expected_behavior": "Gracefully rejects empty input with a friendly user error message.",
-    "actual_result": "",
-    "status": "pending"
+    "input": "Skills: None. Interests: None. Location: Helsinki.",
+    "expected_behavior": "Continue operating without errors and provide recommendations if possible.",
+    "actual_result": "Returned location-based recommendations and remained stable.",
+    "status": "pass"
   }
+  {
+  "id": "case-06",
+  "category": "failure_case",
+  "input": "Skills: None. Interests: None. Location: Helsinki.",
+  "expected_behavior": "Application remains operational and provides location-based recommendations.",
+  "actual_result": "Returned recommendations without errors.",
+  "status": "pass"
+  }  
 ]
