@@ -207,3 +207,7 @@ Refer to [`evaluation/README.md`](evaluation/README.md) for evaluation criteria,
 - Add CV and cover letter assistance.
 - Improve recommendation accuracy and filtering.
 - Expand evaluation with additional user profiles and real-world users.
+
+## Presentation Link
+
+https://kaltura.hamk.fi/media/t/0_5hqa12gh
